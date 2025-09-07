@@ -81,9 +81,11 @@ Access the app at `http://127.0.0.1:8000/`
 To add production photos for your products, place your image files in the `static/production-images/` directory of your project. Reference these images in your markdown or templates as shown below:
 
 ```
-![Product 1](static/production-images/prod1.png)
-![Product 2](static/production-images/prod2.png)
-![Product 3](static/production-images/prod3.png)
+
+
+![product 1](static/production-images/prod1.png)
+![product 2](static/production-images/prod2.png)
+![product 3](static/production-images/prod3.png)
 ```
 
 
