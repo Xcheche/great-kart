@@ -61,8 +61,7 @@ python manage.py migrate
 6. Create a superuser (admin):
 python manage.py createsuperuser
 
-7. Collect static files:
-python manage.py collectstatic
+7. Collect on manage.py collectstatic
 
 ### Running the Development Server
 
@@ -78,16 +77,18 @@ Access the app at `http://127.0.0.1:8000/`
 
 ## Adding Production Photos
 
-To add production photos for your products, place your image files in the `static/production-images/` directory of your project. Reference these images in your markdown or templates as shown below:
+To add production photos for your products, place your image files in the `images/` directory of your project. Reference these images in your markdown or templates as shown below:
+
+To display production photos in your markdown, use the following syntax:
+
+```markdown
+![Product 1](images/prod1.png)
+![Product 2](images/prod2.png)
+![Product 3](images/prod3.png)
 
 ```
 
-
-![product 1](static/production-images/prod1.png)
-![product 2](static/production-images/prod2.png)
-![product 3](static/production-images/prod3.png)
-```
-
+This will render the images directly in your README if viewed on a platform that supports local image paths.
 
 ## License
 
