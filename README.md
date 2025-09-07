@@ -81,12 +81,9 @@ To add production photos for your products, place your image files in the `image
 
 To display production photos in your markdown, use the following syntax:
 
-```markdown
-![Product 1](images/prod1.png)
-![Product 2](images/prod2.png)
-![Product 3](images/prod3.png)
-
-```
+![Product 1](local-markdown-images/prod1.png)
+![Product 2](local-markdown-images/prod2.png)
+![Product 3](local-markdown-images/prod3.png)
 
 This will render the images directly in your README if viewed on a platform that supports local image paths.
 
