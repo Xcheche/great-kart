@@ -7,15 +7,14 @@ This is a Django-based e-commerce web application built with HTML, CSS, Bootstra
 ## Features
 
 - User-friendly product catalog with searchable and categorized product listings
-- Detailed product pages with images and descriptions
+- Detailed product pages with production-images/prod1and descriptions
 - Shopping cart functionality to add, update, or remove items
 - Secure checkout process powered by Stripe payment gateway
 - User account registration, login, and profile management
 - Order history and tracking for registered users
 - Responsive and mobile-friendly design using Bootstrap
 - Admin dashboard to manage products, orders, and users
-- Image upload support for product images
-- Real-time validation and feedback on forms
+- Image upload support for product production-images/prod1- Real-time validation and feedback on forms
 
 ---
 
@@ -79,12 +78,14 @@ Access the app at `http://127.0.0.1:8000/`
 
 ## Adding Production Photos
 
-![photo](static/images/)
-![photo](static/images/)
-![photo](static/images/)
+To add production photos for your products, place your image files in the `static/production-images/` directory of your project. Reference these images in your markdown or templates as shown below:
 
+```
+![Product 1](static/production-images/prod1.png)
+![Product 2](static/production-images/prod2.png)
+![Product 3](static/production-images/prod3.png)
+```
 
----
 
 ## License
 
