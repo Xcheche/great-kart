@@ -1,4 +1,6 @@
 # Django E-Commerce Web App
+![License: MIT](https://img.shields.io/github/license/xcheche/greatkart)
+
 
 This is a Django-based e-commerce web application built with HTML, CSS, Bootstrap for responsive design, and Stripe integration for secure payment processing. The app provides users with a seamless shopping experience, from browsing products to completing purchases online.
 
@@ -89,7 +91,7 @@ This will render the images directly in your README if viewed on a platform that
 
 ## License
 
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+This project is licensed under the MIT License. See the [MIT License](LICENSE) file for details.
 
 ---
 
