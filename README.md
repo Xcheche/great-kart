@@ -87,7 +87,7 @@ Access the app at `http://127.0.0.1:8000/`
 |  2 | ![Product 2](local-markdown-images/prod2.png) |
 |  3 | ![Product 3](local-markdown-images/prod3.png) |
 
-This will render the images directly in your README if viewed on a platform that supports local image paths.
+
 
 ## License
 
