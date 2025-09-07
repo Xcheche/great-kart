@@ -22,10 +22,12 @@ This is a Django-based e-commerce web application built with HTML, CSS, Bootstra
 
 ### Prerequisites
 
-- Python 3.8+
-- pip (Python package installer)
-- PostgreSQL or preferred SQL database (update settings accordingly)
-- Stripe account for API keys
+| Name      | Version                        |
+|-----------|-------------------------------|
+| Python    | 3.8+                          |
+| pip       | Latest (Python package installer) |
+| PostgreSQL| Preferred SQL database (update settings accordingly) |
+| Stripe    | Stripe account for API keys    |
 
 ### Installation
 
@@ -75,15 +77,13 @@ Access the app at `http://127.0.0.1:8000/`
 
 ---
 
-## Adding Production Photos
+## Production Photos
 
-To add production photos for your products, place your image files in the `images/` directory of your project. Reference these images in your markdown or templates as shown below:
-
-To display production photos in your markdown, use the following syntax:
-
-![Product 1](local-markdown-images/prod1.png)
-![Product 2](local-markdown-images/prod2.png)
-![Product 3](local-markdown-images/prod3.png)
+| ID   | Image                                      |
+|-----------|--------------------------------------------|
+|  1 | ![Product 1](local-markdown-images/prod1.png) |
+|  2 | ![Product 2](local-markdown-images/prod2.png) |
+|  3 | ![Product 3](local-markdown-images/prod3.png) |
 
 This will render the images directly in your README if viewed on a platform that supports local image paths.
 
