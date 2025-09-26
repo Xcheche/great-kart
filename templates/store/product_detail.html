@@ -70,8 +70,13 @@
                             </div>
                         </div> <!-- row.// -->
                         <hr>
-                        <a href="" class="btn  btn-primary"> <span class="text">Add to cart</span>
+                        <!--=========Checking if out of stock=====================-->
+                        {% if single_product.stock <= 0 %} 
+                        <span class="badge badge-danger">Out of Stock</span>
+                        {% else %} 
+                        <a href="{% url 'add_to_cart' single_product.id %}" class="btn  btn-primary"> <span class="text">Add to cart</span>
                             <i class="fas fa-shopping-cart"></i> </a>
+                        {% endif %}
                     </article> <!-- product-info-aside .// -->
                 </main> <!-- col.// -->
             </div> <!-- row.// -->

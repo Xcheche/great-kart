@@ -22,10 +22,16 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    #==============================for hot reload=========================================================
     path("__reload__/", include("django_browser_reload.urls")),#for hot reload
+    #==============================Store=================================================================
     path('',include('store.urls')),
+    #==============================Accounts=================================================================
     path('accounts/', include('accounts.urls')),
+    #==============================Category=================================================================
     path('category/', include('category.urls')),
+    #==============================Cart=================================================================
+    path('cart/', include('cart.urls')),
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

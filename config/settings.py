@@ -41,7 +41,7 @@ DJANGO_APPS = [
     'django.contrib.humanize',
 ]
 
-PROJECT_APPS = ['category','accounts','store']
+PROJECT_APPS = ['category','accounts','store','cart']
 THIRD_PARTY_APPS = []
 INSTALLED_APPS =   DJANGO_APPS + PROJECT_APPS + THIRD_PARTY_APPS
 
