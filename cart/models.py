@@ -34,3 +34,10 @@ class CartItem(models.Model):
     class Meta:
         verbose_name = "CartItem"
         verbose_name_plural = "CartItems"
+
+
+    #cart model  method
+     
+    def sub_total(self):
+        """ We get product.price because we have product model and price field """
+        return self.product.price *self.quantity    

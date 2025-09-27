@@ -55,10 +55,10 @@ def add_to_cart(request, product_id): # product_id is coming from urls.py
         )
         cart_item.save()
         # for debugging purpose
-    return HttpResponse(cart_item.quantity) 
-    return HttpResponse(cart_item.id) 
-    return HttpResponse(cart_item.product_name) 
-    exit()    
+    # return HttpResponse(cart_item.quantity) 
+    # return HttpResponse(cart_item.id) 
+    # return HttpResponse(cart_item.product_name) 
+    # exit()    
     return redirect('cart')
 
 
@@ -83,12 +83,17 @@ def cart(request,total=0,quantity=0,cart_items=None):
         for cart_item in cart_items:
             total += (cart_item.product.price * cart_item.quantity)
             quantity += cart_item.quantity
+    #Tax    choose according to location tax rate or vat     
+        tax =(0.075*total)/100
+        grand_total = total + tax
     except Exception:
         pass # just ignore    
 
     context = {
         'total': total,
         'quantity': quantity,
-        'cart_items': cart_items
+        'cart_items': cart_items,
+        'tax':tax,
+        'grand_total':grand_total
     }
     return render(request,'cart/cart.html',context)

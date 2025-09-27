@@ -17,15 +17,17 @@
                     </tr>
                 </thead>
                 <tbody>
-                   
-                   
+
+                    <!--=================Loop through cart items=================-->
+
+                    {% for item in cart_items %}
                     <tr>
                         <td>
                             <figure class="itemside align-items-center">
-                                <div class="aside"><img src="{% static './images/items/9.jpg' %}" class="img-sm"></div>
+                                <div class="aside"><img src="{{ item.product.product_images.url }}" class="img-sm"></div>
                                 <figcaption class="info">
-                                    <a href="#" class="title text-dark">Logitec headset for gaming</a>
-                                    <p class="small text-muted">Version: CUH-ZCT2E <br> Brand: Sony</p>
+                                    <a href="#" class="title text-dark">{{ item.product.product_name }}</a>
+                                    <p class="small text-muted">Color: CUH-ZCT2E <br>Size: Sony</p>
                                 </figcaption>
                             </figure>
                         </td>
@@ -34,27 +36,28 @@
                             <div class="col">
                                 <div class="input-group input-spinner">
                                     <div class="input-group-prepend">
-                                        <button class="btn btn-light" type="button" id="button-plus"> <i
-                                                class="fa fa-minus"></i> </button>
+                                        <a href="#" class="btn btn-light" type="button" id="button-minus"> <i
+                                                class="fa fa-minus"></i> </a>
                                     </div>
-                                    <input type="text" class="form-control" value="1">
+                                    <input type="text" class="form-control" value="{{ item.quantity }}">
                                     <div class="input-group-append">
-                                        <button class="btn btn-light" type="button" id="button-minus"> <i
-                                                class="fa fa-plus"></i> </button>
+                                        <a href="{% url 'add_to_cart' item.product.id %}" class="btn btn-light" type="button" id="button-plus"> <i
+                                                class="fa fa-plus"></i> </a>
                                     </div>
                                 </div> <!-- input-group.// -->
                             </div> <!-- col.// -->
                         </td>
                         <td>
                             <div class="price-wrap">
-                                <var class="price">$98.00</var>
-                                <small class="text-muted"> $578.00 each</small>
+                                <var class="price">&#8358;{{ item.sub_total }}</var>
+                                <small class="text-muted">&#8358;{{ item.product.price }}</small>
                             </div> <!-- price-wrap .// -->
                         </td>
                         <td class="text-right">
                             <a href="" class="btn btn-danger"> Remove</a>
                         </td>
                     </tr>
+                    {% endfor %}
                 </tbody>
             </table>
         </div> <!-- card.// -->
@@ -66,15 +69,15 @@
             <div class="card-body">
                 <dl class="dlist-align">
                     <dt>Total price:</dt>
-                    <dd class="text-right">$69.97</dd>
+                    <dd class="text-right">&#8358;{{ total }}</dd>
                 </dl>
                 <dl class="dlist-align">
                     <dt>Tax:</dt>
-                    <dd class="text-right"> $10.00</dd>
+                    <dd class="text-right">&#8358;{{ tax }}</dd>
                 </dl>
                 <dl class="dlist-align">
-                    <dt>Total:</dt>
-                    <dd class="text-right text-dark b"><strong>$59.97</strong></dd>
+                    <dt>Grand Total:</dt>
+                    <dd class="text-right text-dark b"><strong>&#8358;{{ grand_total }}</strong></dd>
                 </dl>
                 <hr>
                 <p class="text-center mb-3">
