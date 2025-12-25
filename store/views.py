@@ -1,4 +1,7 @@
 from django.shortcuts import get_object_or_404, render
+
+from cart.models import CartItem
+from cart.views import _cart_id
 from .models import Product, Category
 # Create your views here.
 
@@ -36,6 +39,7 @@ def store(request, category_slug=None):
 
 # Product detail view
 def product_detail(request, category_slug, product_slug):
+    in_cart = False
     try:
         single_product = get_object_or_404(
             Product, 
@@ -44,11 +48,18 @@ def product_detail(request, category_slug, product_slug):
             is_available=True
            
         )
+
+        in_cart = CartItem.objects.filter(
+            product=single_product,
+            #Cart has a ForeignKey to CartItem model explains the double underscore
+            cart__cart_id=_cart_id(request)
+        ).exists()
     except Exception as e:
         
         raise e
 
     context = {
         'single_product': single_product,
+        'in_cart': in_cart
     }
     return render(request, 'store/product_detail.html', context)

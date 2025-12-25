@@ -3,7 +3,16 @@
 {% block title %}Great Kart - Cart{% endblock %}
 {% block content %}
 
-
+{% if not cart_items %}
+<div class="page-content text-center mb-3 mt-3">
+    <div class="cart">
+        <div class="container">
+            <h3>Your cart is empty</h3>
+            <a class="btn btn-primary  text-center" href="{% url 'store' %}">Add To Cart</a>
+        </div><!-- End .container -->
+    </div><!-- End .cart -->
+</div><!-- End .page-content -->
+{% else %}
 <div class="row">
     <aside class="col-lg-9">
         <div class="card">
@@ -24,9 +33,12 @@
                     <tr>
                         <td>
                             <figure class="itemside align-items-center">
-                                <div class="aside"><img src="{{ item.product.product_images.url }}" class="img-sm"></div>
+                                <div class="aside"><a href="{{ item.product.get_absolute_url }}">
+                                        <img src="{{ item.product.product_images.url }}" class="img-sm">
+                                    </a></div>
                                 <figcaption class="info">
-                                    <a href="#" class="title text-dark">{{ item.product.product_name }}</a>
+                                    <a href="{{ item.product.get_absolute_url }}" class="title text-dark">
+                                        {{ item.product.product_name }}</a>
                                     <p class="small text-muted">Color: CUH-ZCT2E <br>Size: Sony</p>
                                 </figcaption>
                             </figure>
@@ -36,25 +48,27 @@
                             <div class="col">
                                 <div class="input-group input-spinner">
                                     <div class="input-group-prepend">
-                                        <a href="#" class="btn btn-light" type="button" id="button-minus"> <i
-                                                class="fa fa-minus"></i> </a>
+                                        <a href="{% url 'decrease_cart' item.product.id %}" class="btn btn-light"
+                                            type="button" id="button-minus"> <i class="fa fa-minus"></i> </a>
                                     </div>
                                     <input type="text" class="form-control" value="{{ item.quantity }}">
                                     <div class="input-group-append">
-                                        <a href="{% url 'add_to_cart' item.product.id %}" class="btn btn-light" type="button" id="button-plus"> <i
-                                                class="fa fa-plus"></i> </a>
+                                        <a href="{% url 'add_to_cart' item.product.id %}" class="btn btn-light"
+                                            type="button" id="button-plus"> <i class="fa fa-plus"></i> </a>
                                     </div>
                                 </div> <!-- input-group.// -->
                             </div> <!-- col.// -->
                         </td>
                         <td>
                             <div class="price-wrap">
-                                <var class="price">&#8358;{{ item.sub_total }}</var>
-                                <small class="text-muted">&#8358;{{ item.product.price }}</small>
+                                <!--Sub total-->
+                                <var class="price">&#8358;{{ item.sub_total|floatformat:0|intcomma }}</var>
+                                <!--Price for each product-->
+                                <small class="text-muted">&#8358;{{ item.product.price|floatformat:0|intcomma }}</small>
                             </div> <!-- price-wrap .// -->
                         </td>
                         <td class="text-right">
-                            <a href="" class="btn btn-danger"> Remove</a>
+                            <a href="{% url 'remove_cart' item.product.id %}" class="btn btn-danger"> Remove</a>
                         </td>
                     </tr>
                     {% endfor %}
@@ -69,15 +83,16 @@
             <div class="card-body">
                 <dl class="dlist-align">
                     <dt>Total price:</dt>
-                    <dd class="text-right">&#8358;{{ total }}</dd>
+                    <dd class="text-right">&#8358;{{ total|floatformat:0|intcomma }}</dd>
                 </dl>
                 <dl class="dlist-align">
                     <dt>Tax:</dt>
-                    <dd class="text-right">&#8358;{{ tax }}</dd>
+                    <dd class="text-right">&#8358;{{ tax|floatformat:0|intcomma }}</dd>
                 </dl>
                 <dl class="dlist-align">
                     <dt>Grand Total:</dt>
-                    <dd class="text-right text-dark b"><strong>&#8358;{{ grand_total }}</strong></dd>
+                    <dd class="text-right text-dark b"><strong>&#8358;{{ grand_total|floatformat:0|intcomma }}</strong>
+                    </dd>
                 </dl>
                 <hr>
                 <p class="text-center mb-3">
@@ -92,6 +107,7 @@
 
 
 </div> <!-- row.// -->
+{% endif %}
 <!-- ============================ COMPONENT 1 END .// ================================= -->
 
 </div> <!-- container .//  -->

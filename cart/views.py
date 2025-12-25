@@ -1,5 +1,5 @@
 from django.http import HttpResponse
-from django.shortcuts import render,redirect
+from django.shortcuts import get_object_or_404, render,redirect
 
 from cart.models import Cart, CartItem
 from store.models import Product
@@ -14,7 +14,7 @@ def _cart_id(request):
     """
     cart = request.session.session_key
     if not cart:
-        cart = request.session.create()
+        cart = request.session.save()
     return cart
 
 
@@ -61,8 +61,35 @@ def add_to_cart(request, product_id): # product_id is coming from urls.py
     # exit()    
     return redirect('cart')
 
+#===========================Decrease cart view==========================
+def decrease_cart(request, product_id):
+    """Removing cart items from the cart"""
+    cart = Cart.objects.get(cart_id=_cart_id(request))
+    product = get_object_or_404(Product, id=product_id)
+    try:
+        cart_item = CartItem.objects.get(product=product, cart=cart)
+        if cart_item.quantity > 1:
+            cart_item.quantity -= 1
+            cart_item.save()
+        else:
+            cart_item.delete()
+    except Cart.DoesNotExist:
+        pass
+    except CartItem.DoesNotExist:
+        pass
+
+    return redirect(request.META.get("HTTP_REFERER", "cart"))
 
 
+#===========================Remove_particular_item==========================
+def remove_cart(request, product_id):
+    """Completely removing a particular cart item from the cart"""
+    cart = Cart.objects.get(cart_id=_cart_id(request))
+    product = get_object_or_404(Product, id=product_id)
+    cart_item = CartItem.objects.get(product=product, cart=cart)
+    cart_item.delete()
+
+    return redirect("cart")
 
 
 
@@ -75,6 +102,9 @@ def cart(request,total=0,quantity=0,cart_items=None):
     """
     This function retrieves the cart items for a user and calculates the total price and quantity.
     """
+    tax = 0
+    grand_total = 0
+    cart_items = []
     try:
         #Getting the cart using the cart_id from the session _means is private function
         cart = Cart.objects.get(cart_id= _cart_id(request))
@@ -84,7 +114,8 @@ def cart(request,total=0,quantity=0,cart_items=None):
             total += (cart_item.product.price * cart_item.quantity)
             quantity += cart_item.quantity
     #Tax    choose according to location tax rate or vat     
-        tax =(0.075*total)/100
+        # VAT / Tax (7.5%)
+        tax = (7.5 * total) / 100  # or: tax = total * 0.075
         grand_total = total + tax
     except Exception:
         pass # just ignore    
