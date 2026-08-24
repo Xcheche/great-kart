@@ -64,7 +64,23 @@
                     </div> <!-- category-wrap.// -->
                 </div> <!-- col.// -->
                 <a href="{% url 'store' %}" class="btn btn-outline-primary">Store</a>
-                <div class="col-lg  col-md-6 col-sm-12 col">
+                <!-=============================== SEARCH FORM ==============================--> 
+                <!--
+                            TODO:
+                            Implement search functionality for this form.
+
+                            Current status:
+                            - The search form is currently a UI placeholder only.
+                            - User input is not processed or submitted to a search endpoint.
+
+                            Requirements:
+                            - Create a dedicated search view to handle search queries.
+                            - Filter products based on the submitted keyword(s).
+                          
+                            - Handle empty queries and no-result scenarios gracefully.
+                            - Preserve the search term in the input field after submission.
+                            -->
+                                            <div class="col-lg  col-md-6 col-sm-12 col">
                     <form action="#" class="search">
                         <div class="input-group w-100">
                             <input type="text" class="form-control" style="width:60%;" placeholder="Search">
@@ -77,6 +93,7 @@
                         </div>
                     </form> <!-- search-wrap .end// -->
                 </div> <!-- col.// -->
+                <!--===============================END SEARCH FORM ============================== -->
                 <div class="col-lg-3 col-sm-6 col-8 order-2 order-lg-3">
                     <div class="d-flex justify-content-end mb-3 mb-lg-0">
                         <div class="widget-header">
