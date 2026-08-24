@@ -3,6 +3,7 @@ from django.shortcuts import get_object_or_404, render
 from cart.models import CartItem
 from cart.views import _cart_id
 from .models import Product, Category
+from banner.models import Banner
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 # Create your views here.
 
@@ -14,8 +15,11 @@ def home(request):
     """
     print("Home", "HOME VIEW IS BEING CALLED!")
     products =Product.objects.all().filter(is_available=True)[:3]  # Fetch the first 3 available products
+    # Fetch all banners and display in the home page
+    banners = Banner.objects.all()  # Fetch all banners
     context = {
-        'products':products
+        'products':products,
+        'banners': banners,
     }
     return render(request, 'store/home.html',context)
 

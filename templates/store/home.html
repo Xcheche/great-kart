@@ -7,9 +7,15 @@
 <!-- ========================= SECTION MAIN ========================= -->
 <section class="section-intro padding-y-sm">
   <div class="container">
+    {% if banners %}
     <div class="intro-banner-wrap">
-      <img src="{% static 'images/banners/1.jpg' %}" class="img-fluid rounded" />
+      {% for banner in banners %}
+        <img src="{{ banner.banner_img.url }}" class="img-fluid rounded" />
+      {% endfor %}
     </div>
+    {% else %}
+      <p>No banner available.</p>
+    {% endif %}
   </div>
   <!-- container //  -->
 </section>

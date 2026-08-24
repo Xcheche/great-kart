@@ -41,7 +41,7 @@ DJANGO_APPS = [
     "django_browser_reload",
 ]
 
-PROJECT_APPS = ["category", "accounts", "store", "cart"]
+PROJECT_APPS = ["banner","category", "accounts", "store", "cart"]
 THIRD_PARTY_APPS = [
     'django_extensions',
 
